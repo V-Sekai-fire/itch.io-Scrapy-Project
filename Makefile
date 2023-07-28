@@ -4,7 +4,7 @@ deploy:
 
 .PHONY: test
 test:
-	python3 -m scrapy crawl game_jams -O game_jams.csv -a pages=1
+	python3 -m scrapy crawl games -O games.csv -a pages=1
 
 .PHONY: black
 black:
