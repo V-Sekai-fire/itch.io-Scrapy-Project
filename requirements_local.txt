@@ -3,4 +3,4 @@ scrapy_zyte_smartproxy
 ludwig
 dask
 ray
-ludwig[llm]
+git+https://github.com/ludwig-ai/ludwig.git#egg=ludwig[llm]

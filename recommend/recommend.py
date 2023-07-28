@@ -1,34 +1,43 @@
 import os
 from ludwig.api import LudwigModel
 import gradio as gr
+import yaml
 
-config = {
-    "input_features": [
-        {"name": "platform", "type": "category"},
-        {"name": "game_genre", "type": "category"},
-        {"name": "num_ratings", "type": "numerical"},
-        {"name": "star_rating", "type": "numerical"}
-    ],
-    "output_features": [
-        {
-            "name": "game_text",
-            "type": "text",
-            "encoder": {
-                "type": "auto_transformer",
-                "pretrained_model_name_or_path": "mosaicml/mpt-7b-8k",
-                "trainable": True
-            }
-        }
-    ],
-    "trainer": {
-        "epochs": 3,
-        "learning_rate": 0.00001,
-        "optimizer": {"type": "adamw"},
-        "use_mixed_precision": True,
-        "learning_rate_scheduler": {"decay": "linear", "warmup_fraction": 0.2},
-        "batch_size": 32
-    }
-}
+config_str = """
+model_type: llm
+base_model: openlm-research/open_llama_7b_v2
+input_features:
+  - name: star_rating
+    type: text
+  - name: game_genre
+    type: text
+  - name: platform
+    type: text
+  - name: num_ratings
+    type: text
+output_features:
+  - name: game_text
+    type: text
+quantization:
+  bits: 4
+adapter:
+  type: lora
+trainer:
+  type: finetune
+  learning_rate: 0.0003
+  batch_size: 1
+  gradient_accumulation_steps: 8
+  epochs: 3
+  learning_rate_scheduler:
+    warmup_fraction: 0.01
+preprocessing:
+  sample_ratio: 0.01
+backend:
+  type: local
+"""
+
+config = yaml.safe_load(config_str)
+
 
 import os
 from ludwig.api import LudwigModel
@@ -73,11 +82,12 @@ game_genre_options = [
 ]
 
 model_dir = ''  # replace with your model directory path
-model = LudwigModel(config)
+import logging
+model = LudwigModel(config=config, logging_level=logging.INFO)
 
 if not os.path.exists(model_dir):
     # Train the model if it does not exist
-    train_stats = model.train(dataset="items_games_5.csv", gpus=[0, 1])
+    train_stats = model.train(dataset="items_games_5.csv", trust_remote_code=True)
 else:
     # Load the model and run Gradio if the model exists
     model.load(model_dir)
