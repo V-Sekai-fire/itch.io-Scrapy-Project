@@ -18,10 +18,6 @@ input_features:
 output_features:
   - name: game_text
     type: text
-quantization:
-  bits: 4
-adapter:
-  type: lora
 trainer:
   type: finetune
   learning_rate: 0.0003
