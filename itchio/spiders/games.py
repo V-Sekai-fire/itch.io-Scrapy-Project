@@ -13,15 +13,15 @@ class GameSpider(Spider):
             yield Request(f"https://itch.io/games?page={i}")
 
     def parse(self, response):
-        for game in response.xpath(".//div[@class='game_cell']"):
+        for game in response.css("div.game_cell"):
             yield {
-                "title": game.xpath(".//a[@class='title']/text()").get(),
-                "title_url": game.xpath(".//a[@class='title']/@href").get(),
-                "game_text": game.xpath(".//div[@class='game_text']/text()").get(),
-                "game_genre": game.xpath(".//div[@class='game_genre']/text()").get(),
-                "author": game.xpath(".//div[@class='game_author']/a/text()").get(),
-                "price": game.xpath(".//div[@class='price']/text()").get(),
-                "synopsis": game.xpath(".//div[@class='synopsis']/text()").get(),
-                "rating": game.xpath(".//div[@class='rating']/text()").get(),
-                "reviewers": game.xpath(".//div[@class='reviewers']/text()").get(),
+                "title": game.css("a.title::text").get(),
+                "title_url": game.css("a.title::attr(href)").get(),
+                "game_text": game.css("div.game_text::text").get(),
+                "game_genre": game.css("div.game_genre::text").get(),
+                "author": game.css("div.game_author a::text").get(),    
+                "price": game.css("div.price::text").get(),      
+                "synopsis": game.css("div.synopsis::text").get(),    
+                "rating": game.css("div.rating::text").get(),    
+                "reviewers": game.css("div.reviewers::text").get(),            
             }

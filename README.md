@@ -11,7 +11,7 @@ A Jupyter Notebook with some EDA on that data can be found [here](https://www.ka
 
 The spider can be ran with
 ```zsh
-python3 -m scrapy crawl game_jams -a pages=5 -O game_jams.csv
+python3 -m scrapy crawl games -a pages=5 -O games.csv
 ```
 
 ### Arguments
