@@ -5,7 +5,7 @@ import yaml
 
 config_str = """
 model_type: llm
-base_model: openlm-research/open_llama_7b_v2
+base_model: bigscience/bloomz-3b
 input_features:
   - name: star_rating
     type: text
@@ -87,7 +87,7 @@ model = LudwigModel(config=config, logging_level=logging.INFO)
 
 if not os.path.exists(model_dir):
     # Train the model if it does not exist
-    train_stats = model.train(dataset="items_games_5.csv", trust_remote_code=True)
+    train_stats = model.train(dataset="items_games_5.csv") # trust_remote_code=True
 else:
     # Load the model and run Gradio if the model exists
     model.load(model_dir)
