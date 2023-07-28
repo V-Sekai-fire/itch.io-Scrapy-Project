@@ -13,7 +13,11 @@ config = {
         {
             "name": "game_text",
             "type": "text",
-            "encoder": {"type": "distilbert", "trainable": True}
+            "encoder": {
+                "type": "auto_transformer",
+                "pretrained_model_name_or_path": "mosaicml/mpt-7b-8k",
+                "trainable": True
+            }
         }
     ],
     "trainer": {
