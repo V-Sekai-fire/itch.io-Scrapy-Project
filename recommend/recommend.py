@@ -68,7 +68,7 @@ game_genre_options = [
     "Sports"
 ]
 
-model_dir = 'results/api_experiment_run_6/model'  # replace with your model directory path
+model_dir = ''  # replace with your model directory path
 model = LudwigModel(config)
 
 if not os.path.exists(model_dir):
