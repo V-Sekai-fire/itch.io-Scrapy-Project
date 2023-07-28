@@ -1,2 +1,6 @@
 scrapy
 scrapy_zyte_smartproxy
+ludwig
+dask
+ray
+ludwig[llm]
