@@ -26,9 +26,6 @@ config = {
     }
 }
 
-model_dir = 'path_to_your_model_directory'  # replace with your model directory path
-model = LudwigModel(config)
-
 import os
 from ludwig.api import LudwigModel
 import gradio as gr
