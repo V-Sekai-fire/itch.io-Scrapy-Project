@@ -6,7 +6,7 @@ class GameJamsSpider(Spider):
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
-        self.pages = int(kwargs.get("pages", 100))
+        self.pages = int(kwargs.get("pages", 10))
 
     def start_requests(self):
         for i in range(1, self.pages + 1):
