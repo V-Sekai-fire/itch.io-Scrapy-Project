@@ -19,7 +19,6 @@ class GameSpider(Spider):
                 "game_text": game.css("div.game_text::text").get(default=""),  
                 "game_genre": game.css("div.game_genre::text").get(default=""),         
                 "synopsis": game.css("div.synopsis::text").get(default=""),
-                "platform": ','.join(set(game.css("div.game_platform span::attr(title)").getall())),
-                "input_methods": ','.join(set(game.css("div.game_platform span::attr(title)").getall())),      
+                "platform": ','.join(set(game.css("div.game_platform span::attr(title)").getall())), 
                 "tags": '|'.join(game.css("div.game_text::text").re(r'#(\w+)'))
             }
