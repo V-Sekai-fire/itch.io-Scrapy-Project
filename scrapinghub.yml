@@ -1,4 +1,4 @@
-project: 637745
+project: 676999
 stack: scrapy:2.7
 requirements:
   file: requirements_scrapinghub.txt
