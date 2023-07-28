@@ -95,8 +95,8 @@ else:
         inputs=[
             gr.inputs.Dropdown(platform_options, label="Platform"), 
             gr.inputs.Dropdown(game_genre_options, label="Game Genre"), 
-            gr.inputs.Slider(minimum=0, maximum=10000, default=5000, label="Number of Ratings"),  # Slider for num_ratings
-            gr.inputs.Slider(minimum=0, maximum=5, step=0.1, default=2.5, label="Star Rating")  # Slider for star_rating
+            gr.inputs.Slider(minimum=0, maximum=10000, default=5000, label="Number of Ratings"),    
+            gr.inputs.Slider(minimum=0, maximum=1, step=0.01, default=0.5, label="Star Rating"),
         ], 
         outputs="text"
     )
