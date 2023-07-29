@@ -1,5 +1,10 @@
+# Tested on python3.10
 scrapy
 scrapy_zyte_smartproxy
 dask
 ray
 git+https://github.com/ludwig-ai/ludwig.git#egg=ludwig[llm]
+numexpr>2.7.3
+transformers
+peft
+bitsandbytes
