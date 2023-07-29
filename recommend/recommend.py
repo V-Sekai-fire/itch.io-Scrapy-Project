@@ -5,7 +5,7 @@ import yaml
 
 config_str = """
 model_type: llm
-base_model: bigscience/bloomz-3b
+base_model: openlm-research/open_llama_3b_v2
 input_features:
   - name: star_rating
     type: text
