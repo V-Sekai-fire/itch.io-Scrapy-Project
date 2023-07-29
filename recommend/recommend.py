@@ -30,8 +30,6 @@ trainer:
   epochs: 3
   learning_rate_scheduler:
     warmup_fraction: 0.01
-preprocessing:
-  sample_ratio: 0.01
 backend:
   type: local
 """
